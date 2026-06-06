@@ -8,19 +8,24 @@ load_dotenv()
 
 # ── HuggingFace Router ───────────────────────────────────────────────────────
 HF_TOKEN = os.getenv("HF_TOKEN", "")
-HF_MODEL = "google/gemma-3-27b-it"          # HF Router에서 사용 가능한 Gemma 모델
 HF_API_URL = "https://router.huggingface.co/v1/chat/completions"
 
-# ── Gmail SMTP ───────────────────────────────────────────────────────────────
-GMAIL_USER = os.getenv("GMAIL_USER", "")    # 발신 Gmail 주소
-GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")  # Gmail 앱 비밀번호
+# 기본 모델 (지시대로 정확히)
+HF_ROUTER_MODEL = "google/gemma-4-26B-A4B-it:deepinfra"
 
-# ── 뉴스 소스 ────────────────────────────────────────────────────────────────
-NAVER_NEWS_RSS = "https://search.naver.com/rss?where=news&query={query}"
-GOOGLE_NEWS_RSS = "https://news.google.com/rss/search?q={query}&hl=ko&gl=KR&ceid=KR:ko"
-GOOGLE_NEWS_EN_RSS = "https://news.google.com/rss/search?q={query}&hl=en&gl=US&ceid=US:en"
+# 후보 모델 목록 (사이드바 드롭다운용)
+HF_MODEL_CANDIDATES = [
+    "google/gemma-4-26B-A4B-it:deepinfra",
+    "google/gemma-4-26B-A4B-it:novita",
+    "google/gemma-4-31B-it:deepinfra",
+    "google/gemma-4-31B-it:together",
+    "Qwen/Qwen3.5-9B:together",
+    "Qwen/Qwen2.5-7B-Instruct:together",
+]
+
+# ── Gmail SMTP ───────────────────────────────────────────────────────────────
+GMAIL_USER = os.getenv("GMAIL_USER", "")
+GMAIL_APP_PASSWORD = os.getenv("GMAIL_APP_PASSWORD", "")
 
 # ── 주식 설정 ────────────────────────────────────────────────────────────────
 MAX_STOCKS = 10
-KR_MARKET_SUFFIX = ".KS"   # KOSPI
-KQ_MARKET_SUFFIX = ".KQ"   # KOSDAQ
